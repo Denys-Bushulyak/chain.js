@@ -43,16 +43,21 @@ function Chain(items) {
         return _items[index] || undefined;
     }
 
+    function _beginFrom(index) {
+        return new Chain(_.union(_items.slice(index), _items.slice(0, index)));
+    }
+
     return {
-        next    : _next,
-        prev    : _pref,
-        current : _current,
-        push    : _push,
-        first   : _first,
-        last    : _last,
-        reset   : _reset,
-        isEnd   : _isEnd,
-        items   : _items,
-        getIndex: function () { return index; }
+        next     : _next,
+        prev     : _pref,
+        current  : _current,
+        push     : _push,
+        first    : _first,
+        last     : _last,
+        reset    : _reset,
+        isEnd    : _isEnd,
+        items    : _items,
+        beginFrom: _beginFrom,
+        getIndex : function () { return index; }
     };
 }
