@@ -24,11 +24,11 @@ function Chain(items) {
     }
 
     function _first() {
-        return _items.length > 0 ? _items[0] : undefined;
+        return _items[0] || undefined;
     }
 
     function _last() {
-        return _items.length > 0 ? _items[_items.length - 1] : undefined;
+        return _items[_items.length - 1] || undefined;
     }
 
     function _reset() {
@@ -39,9 +39,14 @@ function Chain(items) {
         return index === (_items.length);
     }
 
+    function _current() {
+        return _items[index] || undefined;
+    }
+
     return {
         next    : _next,
         prev    : _pref,
+        current : _current,
         push    : _push,
         first   : _first,
         last    : _last,
