@@ -23,11 +23,20 @@ function Chain(items) {
         _items.push(item);
     }
 
-    function _first() {
+    function _first(item) {
+
+        if (item) {
+            _items[0] = item;
+        }
+
         return _items[0] || undefined;
     }
 
-    function _last() {
+    function _last(item) {
+        if (item) {
+            _items[_items.length - 1] = item;
+        }
+
         return _items[_items.length - 1] || undefined;
     }
 
