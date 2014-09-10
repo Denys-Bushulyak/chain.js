@@ -5,18 +5,20 @@ function Chain(items) {
     var _items = items || [];
 
     function _next() {
-        index = index > _items.length - 1 ? 0 : index;
-        var item = _items[index];
         index++;
-        return  item;
+
+        index = index > _items.length - 1 ? 0 : index;
+
+        return  _items[index];
     }
 
-    function _pref() {
+    function _prev() {
+
+        index--;
 
         index = index < 0 ? _items.length - 1 : index;
-        var item = _items[index];
-        index--;
-        return  item;
+
+        return  _items[index];
     }
 
     function _push(item) {
@@ -42,6 +44,11 @@ function Chain(items) {
 
     function _reset() {
         index = 0;
+        return  _current();
+    }
+
+    function _isFirst() {
+        return index === 0;
     }
 
     function _isEnd() {
@@ -58,13 +65,14 @@ function Chain(items) {
 
     return {
         next     : _next,
-        prev     : _pref,
+        prev     : _prev,
         current  : _current,
         push     : _push,
         first    : _first,
         last     : _last,
         reset    : _reset,
         isEnd    : _isEnd,
+        isFirst  : _isFirst,
         items    : _items,
         beginFrom: _beginFrom,
         getIndex : function () { return index; }
