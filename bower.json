@@ -1,7 +1,6 @@
 {
 	"name"       : "chain.js",
 	"main"       : "chain.js",
-	"version"    : "1.0.0",
 	"description": "Function wrap a array into a chain.",
 	"moduleType" : [
 		"amd",
