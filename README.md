@@ -28,10 +28,19 @@ menu.push( { id: 123, name: "John" } );
 menu.current();
 //"New"
 
+menu.prev();
+// { id: 123, name: "John" }
+
+menu.next();
+//"New"
+
 menu.next();
 //"Copy"
 
-menu.next();
-//"Edit"
+menu.last();
+// { id: 123, name: "John" }
+
+menu.first();
+//"New"
 
 ```

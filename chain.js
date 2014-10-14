@@ -63,6 +63,14 @@ function Chain(items) {
         return new Chain(_.union(_items.slice(index), _items.slice(0, index)));
     }
 
+    function _getIndex(){
+        return index;
+    }
+
+    function _getItems(byReference){
+        return byReference ? _items : _items.slice(0);
+    }
+
     return {
         next     : _next,
         prev     : _prev,
@@ -73,8 +81,8 @@ function Chain(items) {
         reset    : _reset,
         isEnd    : _isEnd,
         isFirst  : _isFirst,
-        items    : _items,
+        getItems : _getItems,
         beginFrom: _beginFrom,
-        getIndex : function () { return index; }
+        getIndex : _getIndex
     };
 }
