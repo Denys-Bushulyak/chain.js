@@ -53,7 +53,6 @@ describe("Testing Chain", function () {
         });
 
         it("expecting no changing index on tacking first element of chain", function () {
-
             chain.last();
             expect(chain.getIndex()).toBe(0);
             chain.next();
@@ -85,17 +84,19 @@ describe("Testing Chain", function () {
 
         it("expecting to take first index of chain after next after last() after init", function () {
             var lastIndexOfArray = arr.length - 1;
+
             for (var i = 1; i <= lastIndexOfArray; i++) {
                 chain.next();
             }
+
             var item = chain.next();
+
             expect(chain.first()).toBe(item)
             expect(chain.getIndex()).toBe(0);
         });
 
         it("expecting going to set index", function () {
             chain.goTo(2);
-
             expect(chain.current()).toBe(3);
         })
     });
@@ -128,12 +129,11 @@ describe("Testing Chain", function () {
         });
 
         it("expecting True from isEnd after next() ", function () {
+
             var item = chain.goTo(chain.getItems().length - 1);
 
             expect(item).toBe(null);
-
             expect(chain.isBegin()).toBe(false);
-
             expect(chain.isEnd()).toBe(true);
         });
     })

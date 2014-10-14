@@ -76,8 +76,13 @@ function Chain(items) {
         return _items;
     }
 
-    function _goTo(index){
+    function _goTo(index) {
         _index = index;
+        return _current();
+    }
+
+    function _goToEnd() {
+        _index = _items.length - 1;
         return _current();
     }
 
@@ -92,6 +97,7 @@ function Chain(items) {
         isEnd: _isEnd,
         isBegin: _isBegin,
         goTo: _goTo,
+        goToEnd: _goToEnd,
         getItems: _getItems,
         beginFrom: _beginFrom,
         getIndex: _getIndex
