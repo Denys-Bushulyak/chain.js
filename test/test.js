@@ -2,13 +2,13 @@ describe("Testing Chain", function () {
 
     var arr = ['a', 1, 3, -2, null];
 
-    describe("Shift of begin",function(){
+    describe("Shift of begin", function () {
 
         var chain = Chain(arr).beginFrom(3);
 
-        it("expecting shift to -2", function(){
-            expect(chain.current()).toBe(-2);
-            expect(chain.getIndex()).toBe(0);
+        it("expecting shift to -2", function () {
+            expect(-2).toBe(chain.current());
+            expect(0).toBe(chain.getIndex());
         });
     });
 
@@ -17,7 +17,7 @@ describe("Testing Chain", function () {
         var chain = Chain(arr);
 
         it("contains items as expected", function () {
-            expect(arr.length).toBe(chain.items.length);
+            expect(arr.length).toBe(chain.getItems().length);
         });
 
         it("item returned from object Chain equal the item from array with the same index", function () {
@@ -26,44 +26,39 @@ describe("Testing Chain", function () {
             do {
                 var item = chain.current();
 
-                expect(item).toBe(arr[chain.getIndex()]);
-
-                console.log(item);
+                expect(arr[chain.getIndex()]).toBe(item);
 
                 chain.next();
 
                 looped_count++;
 
-            } while (!chain.isEnd());
-
-            expect(looped_count).toBe(arr.length);
+            } while (!chain.isBegin());
         });
     });
 
     describe("moving by chain", function () {
 
         var chain = null;
+
         beforeEach(function () {
             chain = Chain(arr);
         });
 
         it("expecting return the first element of array", function () {
-            expect(arr[0]).toBe(chain.first());
+            expect(chain.first()).toBe(arr[0])
         });
 
         it("expecting return the last element of array", function () {
-            expect(arr[arr.length - 1]).toBe(chain.last());
+            expect(chain.last()).toBe(arr[arr.length - 1])
         });
 
         it("expecting no changing index on tacking first element of chain", function () {
 
             chain.last();
-            expect(0).toBe(chain.getIndex());
-
+            expect(chain.getIndex()).toBe(0);
             chain.next();
             expect(chain.getIndex()).not.toBe(0);
-            expect(chain.getIndex()).toBe(1);
-
+            expect(1).toBe(chain.getIndex());
             chain.last();
             expect(chain.getIndex()).not.toBe(arr.length - 1);
         });
@@ -71,23 +66,20 @@ describe("Testing Chain", function () {
         it("expecting moving down index after prev()", function () {
             chain.next();
 
-            expect(chain.getIndex()).toBe(1);
-
+            expect(1).toBe(chain.getIndex());
             chain.next();
 
-            expect(chain.getIndex()).toBe(2);
-
+            expect(2).toBe(chain.getIndex());
             chain.prev();
 
-            expect(chain.getIndex()).toBe(1);
-
+            expect(1).toBe(chain.getIndex());
         });
 
         it("expecting to take last index of chain after prev after init", function () {
             var item = chain.prev();
             var lastIndexOfArray = arr.length - 1;
 
-            expect(item).toBe(chain.last());
+            expect(chain.last()).toBe(item)
             expect(chain.getIndex()).toBe(lastIndexOfArray);
         });
 
@@ -97,14 +89,20 @@ describe("Testing Chain", function () {
                 chain.next();
             }
             var item = chain.next();
-            expect(item).toBe(chain.first());
+            expect(chain.first()).toBe(item)
             expect(chain.getIndex()).toBe(0);
         });
+
+        it("expecting going to set index", function () {
+            chain.goTo(2);
+
+            expect(chain.current()).toBe(3);
+        })
     });
 
     describe("Testing CRUD", function () {
 
-        var chain = new Chain(arr);
+        var chain = Chain(arr);
 
         it("adding one", function () {
             expect(chain.getItems().length).toBe(arr.length);
@@ -114,4 +112,29 @@ describe("Testing Chain", function () {
             expect(chain.getItems().length).not.toBe(arr.length);
         });
     });
+
+    describe("scope of chain", function () {
+        var chain = Chain(arr);
+
+        it("expecting True from isBegin()", function () {
+            expect(chain.isBegin()).toBe(true);
+            expect(chain.isEnd()).not.toBe(true);
+        });
+
+        it("expecting False from isBegin() after next() ", function () {
+            chain.next();
+            expect(chain.isBegin()).toBe(false);
+            expect(chain.isEnd()).not.toBe(true);
+        });
+
+        it("expecting True from isEnd after next() ", function () {
+            var item = chain.goTo(chain.getItems().length - 1);
+
+            expect(item).toBe(null);
+
+            expect(chain.isBegin()).toBe(false);
+
+            expect(chain.isEnd()).toBe(true);
+        });
+    })
 });

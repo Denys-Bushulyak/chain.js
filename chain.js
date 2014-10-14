@@ -1,24 +1,24 @@
 function Chain(items) {
 
-    var index = 0;
+    var _index = 0;
 
     var _items = items.slice(0) || [];
 
     function _next() {
-        index++;
+        _index++;
 
-        index = index > _items.length - 1 ? 0 : index;
+        _index = _index > _items.length - 1 ? 0 : _index;
 
-        return _items[index];
+        return _items[_index];
     }
 
     function _prev() {
 
-        index--;
+        _index--;
 
-        index = index < 0 ? _items.length - 1 : index;
+        _index = _index < 0 ? _items.length - 1 : _index;
 
-        return _items[index];
+        return _items[_index];
     }
 
     function _push(item) {
@@ -43,20 +43,20 @@ function Chain(items) {
     }
 
     function _reset() {
-        index = 0;
+        _index = 0;
         return _current();
     }
 
-    function _isFirst() {
-        return index === 0;
+    function _isBegin() {
+        return _index === 0;
     }
 
     function _isEnd() {
-        return index == (_items.length - 1);
+        return _index == (_items.length - 1);
     }
 
     function _current() {
-        return _items[index] || undefined;
+        return _items[_index];
     }
 
     function _beginFrom(index) {
@@ -69,11 +69,16 @@ function Chain(items) {
     }
 
     function _getIndex() {
-        return index;
+        return _index;
     }
 
     function _getItems() {
         return _items;
+    }
+
+    function _goTo(index){
+        _index = index;
+        return _current();
     }
 
     return {
@@ -85,7 +90,8 @@ function Chain(items) {
         last: _last,
         reset: _reset,
         isEnd: _isEnd,
-        isFirst: _isFirst,
+        isBegin: _isBegin,
+        goTo: _goTo,
         getItems: _getItems,
         beginFrom: _beginFrom,
         getIndex: _getIndex
