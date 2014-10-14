@@ -7,7 +7,22 @@ Function for creating looped arrays. Used for menu, rotators, etc..
 ###Create###
 ```javascript
 var menu = Chain( [ "New", "Copy", "Edit", "Delete", 1, 2, 3, null ] );
-``` 
+```
+ 
+##Methods##
+-next     
+-prev     
+-current  
+-first    
+-last     
+-reset    
+-isEnd    
+-isBegin  
+-goTo     
+-goToEnd  
+-getItems 
+-beginFrom
+-getIndex 
 
 ###Add item to chain###
 
@@ -44,6 +59,9 @@ menu.first();
 //"New"
 
 ```
+
+
+
 
 ##Testing code##
 
