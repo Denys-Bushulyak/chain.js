@@ -1,8 +1,18 @@
-describe("Testing suite", function () {
+describe("Testing Chain", function () {
 
     var arr = ['a', 1, 3, -2, null];
 
-    describe("Testing items", function () {
+    describe("Shift of begin",function(){
+
+        var chain = Chain(arr).beginFrom(3);
+
+        it("expecting shift to -2", function(){
+            expect(chain.current()).toBe(-2);
+            expect(chain.getIndex()).toBe(0);
+        });
+    });
+
+    describe("Items equality", function () {
 
         var chain = Chain(arr);
 
@@ -30,7 +40,7 @@ describe("Testing suite", function () {
         });
     });
 
-    describe("Testing moving by chain", function () {
+    describe("moving by chain", function () {
 
         var chain = null;
         beforeEach(function () {
@@ -93,14 +103,15 @@ describe("Testing suite", function () {
     });
 
     describe("Testing CRUD", function () {
+
         var chain = new Chain(arr);
 
         it("adding one", function () {
-            expect(chain.items.length).toBe(arr.length);
+            expect(chain.getItems().length).toBe(arr.length);
 
             chain.push('Test');
 
-            expect(chain.items.length).not.toBe(arr.length);
+            expect(chain.getItems().length).not.toBe(arr.length);
         });
     });
 });

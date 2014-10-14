@@ -9,7 +9,7 @@ function Chain(items) {
 
         index = index > _items.length - 1 ? 0 : index;
 
-        return  _items[index];
+        return _items[index];
     }
 
     function _prev() {
@@ -18,7 +18,7 @@ function Chain(items) {
 
         index = index < 0 ? _items.length - 1 : index;
 
-        return  _items[index];
+        return _items[index];
     }
 
     function _push(item) {
@@ -44,7 +44,7 @@ function Chain(items) {
 
     function _reset() {
         index = 0;
-        return  _current();
+        return _current();
     }
 
     function _isFirst() {
@@ -60,29 +60,34 @@ function Chain(items) {
     }
 
     function _beginFrom(index) {
-        return new Chain(_.union(_items.slice(index), _items.slice(0, index)));
+        var newArray = _items.slice(index);
+
+        for (var i = index; i < _items.length; i++) {
+            newArray.push(_items[i]);
+        }
+        return Chain(newArray);
     }
 
-    function _getIndex(){
+    function _getIndex() {
         return index;
     }
 
-    function _getItems(byReference){
-        return byReference ? _items : _items.slice(0);
+    function _getItems() {
+        return _items;
     }
 
     return {
-        next     : _next,
-        prev     : _prev,
-        current  : _current,
-        push     : _push,
-        first    : _first,
-        last     : _last,
-        reset    : _reset,
-        isEnd    : _isEnd,
-        isFirst  : _isFirst,
-        getItems : _getItems,
+        next: _next,
+        prev: _prev,
+        current: _current,
+        push: _push,
+        first: _first,
+        last: _last,
+        reset: _reset,
+        isEnd: _isEnd,
+        isFirst: _isFirst,
+        getItems: _getItems,
         beginFrom: _beginFrom,
-        getIndex : _getIndex
+        getIndex: _getIndex
     };
 }
