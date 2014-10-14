@@ -101,19 +101,6 @@ describe("Testing Chain", function () {
 		})
 	});
 
-	describe("Testing CRUD", function () {
-
-		var chain = Chain(arr);
-
-		it("adding one", function () {
-			expect(chain.getItems().length).toBe(arr.length);
-
-			chain.push('Test');
-
-			expect(chain.getItems().length).not.toBe(arr.length);
-		});
-	});
-
 	describe("scope of chain", function () {
 		var chain = Chain(arr);
 

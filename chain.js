@@ -1,9 +1,20 @@
+/**
+ * Chain
+ * @param items Array of items which must be chained.
+ * @return {Chain} Chain
+ * @constructor
+ */
 function Chain(items) {
 
 	var _index = 0;
 
 	var _items = items.slice(0) || [];
 
+	/**
+	 * Moving pointer to next record.
+	 * @returns {T|*}
+	 * @private
+	 */
 	function _next() {
 		_index++;
 
