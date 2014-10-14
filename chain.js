@@ -2,7 +2,7 @@ function Chain(items) {
 
     var index = 0;
 
-    var _items = items || [];
+    var _items = items.slice(0) || [];
 
     function _next() {
         index++;
@@ -39,7 +39,7 @@ function Chain(items) {
             _items[_items.length - 1] = item;
         }
 
-        return _items[_items.length - 1] || undefined;
+        return _items[_items.length - 1];
     }
 
     function _reset() {
@@ -52,7 +52,7 @@ function Chain(items) {
     }
 
     function _isEnd() {
-        return index === (_items.length);
+        return index == (_items.length - 1);
     }
 
     function _current() {
