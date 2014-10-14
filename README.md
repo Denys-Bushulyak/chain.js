@@ -13,11 +13,11 @@ var menu = Chain( [ "New", "Copy", "Edit", "Delete", 1, 2, 3, null ] );
 
 ```javascript
 
-menu.push("new item");
+menu.getItems().push("new item");
 
-menu.push(3.14);
+menu.getItems().push(3.14);
 
-menu.push( { id: 123, name: "John" } );
+menu.getItems().push( { id: 123, name: "John" } );
 
 ```
 
@@ -44,3 +44,9 @@ menu.first();
 //"New"
 
 ```
+
+##Testing code##
+
+For Unit testing using Jasmine.
+
+Just open file /test/test.html.
