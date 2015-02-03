@@ -6,7 +6,7 @@ Function for creating looped arrays. Used for menu, rotators, etc..
 
 ###Create###
 ```javascript
-var menu = Chain( [ "New", "Copy", "Edit", "Delete", 1, 2, 3, null ] );
+var menu = new Chain( [ "New", "Copy", "Edit", "Delete", 1, 2, 3, null ] );
 ```
  
 ##Methods##
