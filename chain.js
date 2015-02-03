@@ -4,25 +4,15 @@ function Chain(items) {
     var _index = 0;
 
     var _items = items.slice(0) || [];
-    var _hashTable = [];
 
     //Wraping all arrays at items into chain
     for (var index in _items) {
-
-        var hash = getHash(_items[index]);
-        _hashTable[hash] = _items[index];
 
         for (var i in _items[index]) {
             if (Array.isArray(_items[index][i])) {
                 _items[index][i] = Chain(_items[index][i]);
             }
         }
-    }
-
-    function getHash(obj) {
-        var hash = btoa(JSON.stringify(obj));
-
-        return hash.substr(Math.random() * 100, 5);
     }
 
     function _next() {
@@ -103,10 +93,6 @@ function Chain(items) {
         return _current();
     }
 
-    function _getHashTable() {
-        return _hashTable;
-    }
-
     return {
         next        : _next,
         prev        : _prev,
@@ -120,7 +106,6 @@ function Chain(items) {
         goToEnd     : _goToEnd,
         getItems    : _getItems,
         beginFrom   : _beginFrom,
-        getIndex    : _getIndex,
-        getHashTable: _getHashTable
+        getIndex    : _getIndex
     };
 }
