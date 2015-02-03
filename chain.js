@@ -86,10 +86,6 @@ function Chain(items) {
     }
 
     function _getIndex(item) {
-        if (item) {
-            var hash = generateHash(item);
-
-        }
         return _index;
     }
 
