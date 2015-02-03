@@ -75,7 +75,7 @@ function Chain(items) {
         return Chain(newArray);
     }
 
-    function _getIndex(item) {
+    function _getIndex() {
         return _index;
     }
 
@@ -84,8 +84,9 @@ function Chain(items) {
     }
 
     function _goTo(index) {
-        _index = index;
-        return _current();
+        index = parseInt(index);
+        _index = index < 0 ? _items.length - 1 : index;
+        return _items[_index];
     }
 
     function _goToEnd() {

@@ -91,7 +91,7 @@ describe("Testing Chain", function () {
 
             var item = chain.next();
 
-            expect(chain.first()).toBe(item)
+            expect(chain.first()).toBe(item);
             expect(chain.getIndex()).toBe(0);
         });
 
