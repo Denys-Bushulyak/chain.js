@@ -83,6 +83,14 @@ function Chain(items) {
         return _items;
     }
 
+    function _count(){
+        var length = 0;
+        for(var i in _items){
+            length++;
+        }
+        return length;
+    }
+
     function _goTo(index) {
         index = parseInt(index);
         _index = index < 0 ? _items.length - 1 : index;
@@ -92,6 +100,16 @@ function Chain(items) {
     function _goToEnd() {
         _index = _items.length - 1;
         return _current();
+    }
+
+    function _slice(start, length){
+        var out = [];
+        for(var i in _items){
+            if(i >= start && i <= length){
+                out.push(_items[i]);
+            }
+        }
+        return new Chain(out);
     }
 
     return {
@@ -107,6 +125,8 @@ function Chain(items) {
         goToEnd     : _goToEnd,
         getItems    : _getItems,
         beginFrom   : _beginFrom,
-        getIndex    : _getIndex
+        getIndex    : _getIndex,
+        slice       : _slice,
+        count       : _count
     };
 }

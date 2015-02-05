@@ -8,16 +8,38 @@ describe("Testing Chain", function () {
 
         it("expecting shift to -2", function () {
             expect(chain.current()).toBe(-2);
-            expect(chain.current().getIndex()).toBe(3);
+        });
+
+        it("expecting index would be 0", function () {
+            expect(chain.getIndex()).toBe(0);
         });
 
         it("expecting than array length would be 2", function(){
-            expect(chain.getItems().length).toBe(2);
+            expect(chain.getItems().length).toBe(4);
         });
 
         it("expecting than last item would be null", function(){
             expect(chain.last()).toBe(null);
         })
+    });
+
+    describe("Begin sub chain", function(){
+        var chain = new Chain(arr);
+
+        var sub_chain = chain.slice(2,4);
+
+        it("subchain must have 4 items ", function(){
+            expect(sub_chain.count()).toBe(3);
+        });
+
+        it("first item will be 1", function(){
+            expect(sub_chain.current()).toBe(3);
+            expect(sub_chain.first()).toBe(3);
+        });
+
+        it("subchain must have last items equal as -2", function(){
+            expect(sub_chain.last()).toBeNull();
+        });
     });
 
     describe("Items equality", function () {
