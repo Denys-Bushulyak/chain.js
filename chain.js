@@ -104,6 +104,7 @@ function Chain(items) {
 
     function _slice(start, length){
         var out = [];
+        length = length || Number.POSITIVE_INFINITY;
         for(var i in _items){
             if(i >= start && i <= length){
                 out.push(_items[i]);

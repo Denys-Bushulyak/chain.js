@@ -23,6 +23,29 @@ describe("Testing Chain", function () {
         })
     });
 
+    describe("Testing slice function",function(){
+        var chain = new Chain(arr);
+
+        it("expecting chain will be 4 items length", function(){
+            expect(chain.count()).toBe(5);
+        });
+
+        it("expecting chain will be 4 items length", function(){
+
+            chain = chain.slice(1);
+
+            expect(chain.count()).toBe(4);
+            expect(chain.first()).toBe(1);
+            expect(chain.last()).toBe(null);
+            expect(chain.last()).toBeNull();
+
+            chain = chain.slice(1,2);
+
+            expect(chain.first()).toBe(3);
+            expect(chain.last()).toBe(-2);
+        });
+    });
+
     describe("Begin sub chain", function(){
         var chain = new Chain(arr);
 
