@@ -7,9 +7,17 @@ describe("Testing Chain", function () {
         var chain = (new Chain(arr)).beginFrom(3);
 
         it("expecting shift to -2", function () {
-            expect(-2).toBe(chain.current());
-            expect(0).toBe(chain.getIndex());
+            expect(chain.current()).toBe(-2);
+            expect(chain.current().getIndex()).toBe(3);
         });
+
+        it("expecting than array length would be 2", function(){
+            expect(chain.getItems().length).toBe(2);
+        });
+
+        it("expecting than last item would be null", function(){
+            expect(chain.last()).toBe(null);
+        })
     });
 
     describe("Items equality", function () {
