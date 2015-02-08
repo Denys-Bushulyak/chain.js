@@ -15,6 +15,12 @@ function Chain(items) {
         }
     }
 
+     function log(message, arg_2, arg_3, arg_n) {
+        if (Chain.debug) {
+            console && console.debug(message, arguments);
+        }
+     }
+
     function _next() {
         _index++;
 
@@ -83,9 +89,9 @@ function Chain(items) {
         return _items;
     }
 
-    function _count(){
+    function _count() {
         var length = 0;
-        for(var i in _items){
+        for (var i in _items) {
             length++;
         }
         return length;
@@ -102,32 +108,62 @@ function Chain(items) {
         return _current();
     }
 
-    function _slice(start, length){
+    function _slice(start, length) {
         var out = [];
         length = length || Number.POSITIVE_INFINITY;
-        for(var i in _items){
-            if(i >= start && i <= length){
+        for (var i in _items) {
+            if (i >= start && i <= length) {
                 out.push(_items[i]);
             }
         }
         return new Chain(out);
     }
 
-    return {
-        next        : _next,
-        prev        : _prev,
-        current     : _current,
-        first       : _first,
-        last        : _last,
-        reset       : _reset,
-        isEnd       : _isEnd,
-        isBegin     : _isBegin,
-        goTo        : _goTo,
-        goToEnd     : _goToEnd,
-        getItems    : _getItems,
-        beginFrom   : _beginFrom,
-        getIndex    : _getIndex,
-        slice       : _slice,
-        count       : _count
+    function _except(itemIndex) {
+        var out = [];
+
+        itemIndex = Array.isArray(itemIndex) ? itemIndex : [itemIndex];
+
+        for (var i in itemIndex) {
+
+            log("Excepting index: ", i);
+
+            for (var j in _items) {
+
+                log("Item index: ", j);
+
+                if (j != itemIndex[i]) {
+
+                    log("Compare: ", j != itemIndex[i]);
+
+                    out.push(_items[j]);
+                }
+            }
+        }
+
+        log("Result", out);
+
+        return new Chain(out);
+    }
+
+    var instance = {
+        next     : _next,
+        prev     : _prev,
+        current  : _current,
+        first    : _first,
+        last     : _last,
+        reset    : _reset,
+        isEnd    : _isEnd,
+        isBegin  : _isBegin,
+        goTo     : _goTo,
+        goToEnd  : _goToEnd,
+        getItems : _getItems,
+        beginFrom: _beginFrom,
+        getIndex : _getIndex,
+        slice    : _slice,
+        count    : _count,
+        except   : _except
     };
+
+    return instance;
 }

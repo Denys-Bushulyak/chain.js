@@ -20,7 +20,20 @@ describe("Testing Chain", function () {
 
         it("expecting than last item would be null", function(){
             expect(chain.last()).toBe(null);
-        })
+        });
+    });
+
+    describe("Testing exception function",function(){
+
+        Chain.debug = true;
+        var chain = new Chain(arr);
+        chain.debug = true;
+
+        it("expecting than new chain will not contain '3'", function(){
+            expect(chain.except(2).count()).toBe(4);
+            expect(chain.except(2).goTo(2)).toBe(-2);
+        });
+
     });
 
     describe("Testing slice function",function(){
